@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>#styling-form {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #3e8e41;
+  }
+  </style>
+<body>
+    <form id="styling-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" pattern="[a-zA-Z]{1,50}" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" pattern=".{8,16}" required>
+        
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
+        
+        <input type="submit" value="Submit">
+      </form>
+      <script>
+        
+
+
+const form = document.getElementById("styling-form");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const confirmPasswordInput = document.getElementById("confirm-password");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  
+  if (nameInput.value) {
+    console.log("Name is valid");
+  } else {
+    alert("Please enter a valid name (only small/capital characters)");
+    return;
+  }
+  
+  if (emailInput.value.match) {
+    console.log("Email is valid");
+  } else {
+    alert("Please enter a valid email address");
+    return;
+  }
+  
+  if (passwordInput.value.length >= 8 && passwordInput.value.length <= 16) {
+    console.log("Password is valid");
+  } else {
+    alert("Please enter a password between 8 and 16 characters");
+    return;
+  }
+  
+  if (passwordInput.value === confirmPasswordInput.value) {
+    console.log("Passwords match");
+  } else {
+    alert("Passwords do not match");
+    return;
+  }
+  
+  // Store data in local storage
+  const userData = {
+    name: nameInput.value,
+    email: emailInput.value,
+    password: passwordInput.value
+  };
+  localStorage.setItem("userData", JSON.stringify(userData));
+  alert("Data saved successfully!");
+});
+
+
+      </script>
+      
+</body>
+</html>
